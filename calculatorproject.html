@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator G5</title>
+    <link rel="stylesheet" type="text/css" href="style_calculator.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+</head>
+
+<script>
+    function checkVal(){
+        for (var i=0; i<str.length; i++){
+            var char = str.substring(i, i+1)
+            if (char < "0" || char > "9"){
+                if (char != "(" && char != ")"){
+                    alert("Input Salah!")
+                    return false
+                }
+            }
+        }
+        return true
+    }
+
+    function clickme(x){
+        if(myform.display.value == null || myform.display.value == "0")
+            myform.display.value = x;
+        else
+            myform.display.value += x;
+    }
+
+    function backspc(){
+        var prevalue = myform.display.value;
+        myform.display.value = prevalue.substr(0, prevalue.length-1);
+    }
+
+    function fungsiAC(){
+        myform.display.value = 0;
+    }
+
+    var lastResult = 0;
+    function resultme(){
+        lastResult = eval(myform.display.value);
+        myform.display.value = lastResult;
+    }
+
+    function clickAns(){
+        if (myform.display.value == null || myform.display.value == "0")
+            myform.display.value = lastResult;
+        else
+            myform.display.value += lastResult;
+    }
+
+    function changePlusMin(){
+        myform.display.value *= -1;
+    }
+
+    function clickSin(){
+        myform.display.value = Math.sin(myform.display.value)
+    }
+
+    function clickCos(){
+        myform.display.value = Math.cos(myform.display.value)
+    }
+    
+    function clickTan(){
+        myform.display.value = Math.tan(myform.display.value)
+    }
+    
+    function clickExp(){
+        myform.display.value = Math.exp(myform.display.value)
+    }
+
+    function clickLn(){
+        myform.display.value = Math.log(myform.display.value)
+    }
+
+    function clickSinh(){
+        myform.display.value = Math.sinh(myform.display.value)
+    }
+
+    function clickCosh(){
+        myform.display.value = Math.cosh(myform.display.value)
+    }
+
+    function clickTanh(){
+        myform.display.value = Math.tanh(myform.display.value)
+    }
+
+    function clickSquare(){
+        myform.display.value *= (myform.display.value)
+    }
+
+    function clickSqrt(){
+        myform.display.value = Math.sqrt(myform.display.value)
+    }
+
+    function clickPi(){
+        if (myform.display.value == null || myform.display.value == "0")
+            myform.display.value = Math.PI
+        else
+            myform.display.value += Math.PI
+    }
+
+    function bilanganE(){
+        if (myform.display.value == null || myform.display.value == "0")
+            myform.display.value = Math.E
+        else
+            myform.display.value += Math.E
+    }
+</script>
+
+<body class="container">
+    <!--<div class="main_calc">-->
+        <form class="main_calc" name="myform">
+            
+            <!--Ini buat kasih merek, biar keren dikit-->
+            <div class="merk_calc">
+            
+            </div>
+
+            <!--Layar untuk menampilkan angka-->
+            <div class="layar">
+                <input type="text" name="display" readonly maxlength="25"><br>
+            </div>
+
+            <!--Tombol angka dan operator-->
+            <div class="tombol">
+                <div class="tombolBlack">
+                    <p>
+                        <input type="button" name="btnChange" value="+/-" onclick="changePlusMin()">
+                        <input type="button" name="btnBukaKrg" value="(" onclick="clickme('(')">
+                        <input type="button" name="btnTutupKrg" value=")" onclick="clickme(')')">
+                        <input type="button" name="btnE" value="e" onclick="bilanganE()">
+                    </p><p>
+                        <input type="button" name="btnSin" value="sin" onclick="clickSin()">
+                        <input type="button" name="btnCos" value="cos" onclick="clickCos()">
+                        <input type="button" name="btnTan" value="tan" onclick="clickTan()">
+                        <input type="button" name="btnExp" value="exp" onclick="clickExp()">
+                        <input type="button" name="btnLn" value="ln" onclick="clickLn()">
+                    </p><p>
+                        <input type="button" name="btnSin" value="sinh" onclick="clickSinh()">
+                        <input type="button" name="btnCos" value="cosh" onclick="clickCosh()">
+                        <input type="button" name="btnTan" value="tanh" onclick="clickTanh()">
+                        <input type="button" name="btnSq" value="sq" onclick="clickSquare()">
+                        <input type="button" name="btnSqrt" value="sqrt" onclick="clickSqrt()">
+                    </p>
+                </div>
+
+                <div class="tombolSilver">
+                    <p>
+                        <input type="button" name="btn7" value="7" onclick="clickme('7')">
+                        <input type="button" name="btn8" value="8" onclick="clickme('8')">
+                        <input type="button" name="btn9" value="9" onclick="clickme('9')">
+                        <input class="btnDel" type="button" name="btnDel" value="DEL" onclick="backspc()">
+                        <input class="btnAC" type="button" name="btnAC" value="AC" onclick="fungsiAC()">
+                    </p><p>
+                        <input type="button" name="btn4" value="4" onclick="clickme('4')">
+                        <input type="button" name="btn5" value="5" onclick="clickme('5')">
+                        <input type="button" name="btn6" value="6" onclick="clickme('6')">
+                        <input type="button" name="btnMul" value="x" onclick="clickme('*')">
+                        <input type="button" name="btnDiv" value="/" onclick="clickme('/')">
+                    </p><p>
+                        <input type="button" name="btn1" value="1" onclick="clickme('1')">
+                        <input type="button" name="btn2" value="2" onclick="clickme('2')">
+                        <input type="button" name="btn3" value="3" onclick="clickme('3')">
+                        <input type="button" name="btnAdd" value="+" onclick="clickme('+')">
+                        <input type="button" name="btnMin" value="-" onclick="clickme('-')">
+                    </p><p>
+                        <input type="button" name="btn0" value="0" onclick="clickme('0')">
+                        <input type="button" name="btnComma" value="." onclick="clickme('.')">
+                        <input type="button" name="btnPi" value="Pi" onclick="clickPi()">
+                        <input type="button" name="btnAns" value="Ans" onclick="clickAns()">
+                        <input type="button" name="btnHasil" value="=" onclick="resultme()">
+                    </p>
+                </div>
+            </div> <!--close tag tombol-->
+        </form>
+    <!--</div>-->
+</body>
+
+</html>
